@@ -1,0 +1,10 @@
+# Python specific ignores
+__pycache__/
+*.pyc
+venv/
+.env
+.flaskenv
+
+# Operating System specific ignores
+.DS_Store # macOS
+Thumbs.db # Windows
