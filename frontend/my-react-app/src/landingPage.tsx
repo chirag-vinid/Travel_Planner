@@ -15,8 +15,11 @@ import {
   X,
 } from "lucide-react"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import LoginForm from "./loginForm"
+import SignupForm from "./signupForm"
 type LinkProps = React.ComponentProps<"a"> & { href: string }
-function Link({ href, children, ...props }: LinkProps) {
+function externalLink({ href, children, ...props }: LinkProps) {
   return (
     <a href={href} {...props}>
       {children}
@@ -143,10 +146,14 @@ export default function TravelPlanner() {
 
             <div className="hidden md:flex items-center space-x-4">
               <button className="px-4 py-2 rounded-md text-gray-700 hover:text-blue-600 transition-colors">
-                Sign In
+                <Link to="/login">
+                  Login
+                </Link>
               </button>
               <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                Sign Up
+                <Link to="/signup">
+                  Sign Up
+                </Link>
               </button>
             </div>
 
