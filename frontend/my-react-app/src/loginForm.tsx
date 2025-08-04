@@ -6,28 +6,30 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+  try {
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
+    const data = await response.json();
 
-      const data = await response.json();
-      console.log("Login successful:", data);
-    } 
-    catch (error) {
-      console.error("Error:", error);
+    if (!response.ok) {
+      throw new Error(data.message || "Login failed");
     }
-  };
+
+    console.log("Login successful:", data);
+    // Optional: Store token in localStorage or sessionStorage
+  } catch (error) {
+    console.error("Error logging in:", error);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
